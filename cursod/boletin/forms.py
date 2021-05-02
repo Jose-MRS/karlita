@@ -19,6 +19,15 @@ class RegModelForm(forms.ModelForm):
         #validaciones
         return nombre
 
-class RegForm(forms.Form):
-    nombre = forms.CharField(max_length=100)
+class ContactForm(forms.Form):
+    nombre = forms.CharField(required=False)
     email = forms.EmailField()
+    mensaje = forms.CharField(widget=forms.Textarea)
+    
+    #def clean_email(self):
+     #   email = self.cleaned_data.get("email")
+      #  email_base, proveeder = email.split("@")
+       # dominio, extension = proveeder.split(".")
+        #if not extension == "edu":
+         #   raise forms.ValidationError("Por favor utiliza un email con la extensión .EDU")
+        #return email
