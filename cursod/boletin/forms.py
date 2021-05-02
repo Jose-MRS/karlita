@@ -15,7 +15,7 @@ class RegModelForm(forms.ModelForm):
             raise forms.ValidationError("Por favor utiliza un email con la extensión .EDU")
         return email
     def clean_nombre(sed):
-        nombre = self.cleaned_data.get("nombre")
+        nombre = sed.cleaned_data.get("nombre")
         #validaciones
         return nombre
 

@@ -2,7 +2,9 @@
 {{request.user}}<br/>
 <hr/>
 <br/>
+{% if form %}
 <form method ='POST' action ="">{% csrf_token %}
 {{ el_form.as_p }}
 <input type='submit' value= 'Regístrate' />
 </form>
+{% endif %}
