@@ -7,7 +7,7 @@ from .forms import RegModelForm, ContactForm
 from .models import Registrado
 # Create your views here.
 def inicio(request):
-    titulo = "HOLA"
+    titulo = "Bienvenido formulario de registro"
     abc = "123"
     if request.user.is_authenticated:
         titulo = "Bienvenido %s" %(request.user)
