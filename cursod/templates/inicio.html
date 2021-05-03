@@ -1,9 +1,33 @@
+{% extends "base.html" %}
+
+{% block head_title %} Bienvenidos | {{ block.super}}{% endblock %}
+
+{% block container-content %}
+<main class="container">
+    
+    <div class="bg-light p-5 rounded">
+
+      <h1>INICIO!!</h1>
+      <p class="lead">This example is a quick exercise to illustrate how the top-aligned navbar works. As you scroll, this navbar remains in its original position and moves with the rest of the page.</p>
+      <a class="btn btn-lg btn-primary" href="/docs/5.0/components/navbar/" role="button">View navbar docs &raquo;</a>
+    </div>
+  </main>
+
+{% endblock %} 
+
+{% block container-fluid %}
+{{ block.super }}
+ola k ase
+{% endblock %} 
+
 {{titulo}}<br/>
 {{request.user}}<br/>
 <hr/>
 <br/>
-
+{% block content %}
+{{ block.super }}
 <form method ='POST' action ="">{% csrf_token %}
 {{ el_form.as_p }}
 <input type='submit' value= 'Regístrate' />
 </form>
+{% endblock %}
