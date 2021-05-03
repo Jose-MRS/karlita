@@ -26,14 +26,14 @@
 {{ block.super}}
 <div class='row'>
     <div class='col-sm-3 pull-right'>
-        <p class='lead'>{{ titulo }}</p>
+        <p class='lead text-align-center'>{{ titulo }}</p>
 <form method ='POST' action ="">{% csrf_token %}
 {{ el_form|crispy }}
 <input type='submit' value= 'Regístrate' />
 </form>
 </div>
-<div class='col-sm-3'><p class='lead'>Años de experiencia</p></div>
-<div class='col-sm-3'><p class='lead'>Aprende con nosotros</p></div>
-<div class='col-sm-3'><p class='lead'>José María hizo esto</p></div>
+<div class='col-sm-3'><p class='lead text-align-center'>Años de experiencia</p></div>
+<div class='col-sm-3'><p class='lead text-align-center'>Aprende con nosotros</p></div>
+<div class='col-sm-3'><p class='lead text-align-center'>José María hizo esto</p></div>
 </div>
 {% endblock %}
