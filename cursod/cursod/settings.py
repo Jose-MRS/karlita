@@ -42,10 +42,12 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     #apps de terceros
     'crispy_forms',
+    'registration',
     #mis apps
     'boletin',
 ]
@@ -62,7 +64,6 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'cursod.urls'
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 TEMPLATES = [
     {
@@ -145,3 +146,8 @@ MEDIA_ROOT = BASE_DIR / ".." / "static_env" / "media_root"
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+ACCOUNT_ACTIVATION_DAYS = 7
+REGISTRATION_AUTO_LOGIN = True
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
