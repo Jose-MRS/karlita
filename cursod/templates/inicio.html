@@ -1,16 +1,19 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
 
+{% load static %}
+
 {% block head_title %} Bienvenidos | {{ block.super}}{% endblock %}
 
-<style>
-    {% block style %}
-    .container-content {background-color:blueviolet;
-    } 
-    {% endblock %}
-  </style>
 
-{% block container-content %}
+{% block container %}
+{% if request.user.is_staff %}
+<table class='table'>
+{% for instance in queryset %}
+<tr><td>{{ forloop.counter }}</td></tr><td>{{ instance }} <td>{{ instance.nombre }}</td><br/><td>hace {{ instance.timestamp|timesince }}</td></tr>
+{% endfor %}
+</table>
+{% else %}
 <main class='container'>
 <div class="bg-light p-5 rounded">
 <div class='row'>
@@ -21,30 +24,43 @@
         <p class="lead">Proyecto del curso de Karlita.</p>
         <a class="btn btn-lg btn-primary" href="/docs/5.0/components/navbar/" role="button">Únete &raquo;</a>
     </div>
-<div class='col-sm-6' style ='background-color:black;height:300px;'>
+<div class='col-sm-6'><iframe width="560" height="315" src="https://www.youtube.com/embed/oqwRln6PJKM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 </div>
 
 </main>
+{% endif %}
 {% endblock %} 
 
 {{titulo}}<br/>
-{{request.user}}<br/>
+{{ request.user }}<br/>
 <hr/>
 <br/>
 
 {% block content %}
-{{ block.super}}
+{% if not request.user.is_staff %}
+
 <div class='row'>
     <div class='col-sm-3 pull-right'>
-        <p class='lead text-align-center'>{{ titulo }}</p>
+        {% if not user.is_authenticated %}
+        <p class='lead text-align-center'>Suscribirte</p>
+      
 <form method ='POST' action ="">{% csrf_token %}
 {{ el_form|crispy }}
 <input type='submit' value= 'Regístrate' />
 </form>
+{% else %}
+<p class='lead text-align-center'>{{ titulo }}</p>
+<i class="fab fa-acquisitions-incorporated fa-5x"></i>
+{% endif %}
 </div>
-<div class='col-sm-3'><p class='lead text-align-center'>Años de experiencia</p></div>
-<div class='col-sm-3'><p class='lead text-align-center'>Aprende con nosotros</p></div>
-<div class='col-sm-3'><p class='lead text-align-center'>José María hizo esto</p></div>
+<div class='col-sm-3'><p class='lead text-align-center'>Años de experiencia</p><i class="fas fa-book-dead fa-5x" style="color:red"></i></div>
+<div class='col-sm-3'><p class='lead text-align-center'>Aprende con nosotros</p><img src='{% static "img/kebab.jpg" %}'</div>
+<div class='col-sm-3'><p class='lead text-align-center'>José María hizo esto<span class="fa-stack fa-2x">
+<i class="fas fa-spinner fa-stack-2x"></i>
+<i class="fab fa-twitter fa-stack-1x"></i>
+</span></p>
 </div>
+</div>
+{% endif %}
 {% endblock %}

@@ -5,12 +5,13 @@ from django.shortcuts import render
 
 from .forms import RegModelForm, ContactForm
 from .models import Registrado
+
 # Create your views here.
 def inicio(request):
     titulo = "Bienvenido formulario de registro"
     abc = "123"
     if request.user.is_authenticated:
-        titulo = "Bienvenido %s" %(request.user)
+        titulo = "Bienvenid@ %s" %(request.user)
     form = RegModelForm(request.POST or None)
 
     context = {
@@ -38,6 +39,10 @@ def inicio(request):
         #obj.email = abc
         #obj.save()
 
+    if request.user.is_authenticated and request.user.is_staff:
+        queryset = Registrado.objects.all().order_by("-timestamp") #.filter(nombre__iexact="karlita")
+        context = {"queryset": queryset,
+        }
     return render(request, "inicio.html", context)
 
 def contact(request):
