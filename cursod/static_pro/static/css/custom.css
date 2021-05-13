@@ -1,3 +1,15 @@
 .text-align-center{
     text-align: center;
 }
+
+.navbar-default {
+    background-color:blueviolet !important;
+}
+
+.navbar-brand {
+    color: black;
+}
+
+.marcado:hover{
+    color:brown;
+}
